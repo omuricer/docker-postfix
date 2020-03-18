@@ -128,3 +128,7 @@ cat >> /etc/opendkim/SigningTable <<EOF
 EOF
 chown opendkim:opendkim $(find /etc/opendkim/domainkeys -iname *.private)
 chmod 400 $(find /etc/opendkim/domainkeys -iname *.private)
+
+# Gmailの受信者に「このメールは＊＊＊で暗号化されませんでした」と表示させないための対応
+# /etc/postfix/main.cf
+postconf -e smtp_tls_security_level=may
